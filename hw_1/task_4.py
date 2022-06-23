@@ -1,3 +1,4 @@
+from itertools import combinations
 def bananas(s: str, word="banana", base="") -> set:
     """
     Возвращает количество слов «banana» в строке.
@@ -5,7 +6,7 @@ def bananas(s: str, word="banana", base="") -> set:
     :param s: str - Исходная строка
     :return: set - Комбинации строк без лишних символов
     """
-    result = set()
+    result: set = set()
     if not s and word:
         return result
 
@@ -17,6 +18,7 @@ def bananas(s: str, word="banana", base="") -> set:
         result = bananas(s[1:], word, base + "-")
         return result
     result = bananas(s[1:], word[1:], base + word[0]).union(bananas(s[1:], word, base + "-"))
+
     return result
 
 
