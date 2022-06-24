@@ -1,25 +1,30 @@
 from itertools import combinations
-def bananas(s: str, word="banana", base="") -> set:
+
+
+def bananas(s: str, word="banana") -> set:
     """
-    Возвращает количество слов «banana» в строке.
-    :param word: str - Правильное слово
-    :param s: str - Исходная строка
-    :return: set - Комбинации строк без лишних символов
+    Возвращает комбинации слов с убранными лишними символами
+    :param s: Исходное слово с лишними символами
+    :param word: Правильное слово
+    :return: set - Комбинации слов, где лишние символы заменены на "-" (дефис)
     """
     result: set = set()
-    if not s and word:
-        return result
+    len_s: int = len(s)
 
-    if not word:
-        result = {base + "-" * len(s)}
-        return result
+    for indexes in combinations(range(len_s), len_s - 6):
+        symbols = list(s)
 
-    if s[0] != word[0]:
-        result = bananas(s[1:], word, base + "-")
-        return result
-    result = bananas(s[1:], word[1:], base + word[0]).union(bananas(s[1:], word, base + "-"))
+        for i in indexes:
+            symbols[i] = '-'
+
+        temp_str = ''.join(symbols)
+
+        if temp_str.replace('-', '') == word:
+            result.add(temp_str)
 
     return result
+
+
 
 
 def test():
