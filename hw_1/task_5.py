@@ -1,20 +1,4 @@
-def get_prime_divisors(n: int) -> set:
-    """
-    Возврашает уникальные простые делители числа
-    :param n: int - Число для поиска его делителе
-    :return: set - Делители числа
-    """
-    result = set()
-    d = 2
-    while d ** 2 <= n:
-        if n % d == 0:
-            result.add(d)
-            n //= d
-        else:
-            d += 1
-    if n > 1:
-        result.add(n)
-    return result
+from math import prod
 
 
 def count_find_num(primesL: list, limit: int) -> list:
@@ -24,11 +8,29 @@ def count_find_num(primesL: list, limit: int) -> list:
     :param limit: int - Верхняя граница интервала поиска
     :return: list - кол-во найденных чисел и максимальное найденное число
     """
-    numbers: list = []
-    for number in range(2, limit + 1):
-        if list(get_prime_divisors(number)) == primesL:
-            numbers.append(number)
-    return [len(numbers), max(numbers)] if len(numbers) > 0 else []
+    min_number = prod(primesL)
+    result = set()
+    result.add(min_number)
+    if min_number > limit:
+        return []
+    old_values = {min_number}
+
+    while min_number <= limit:
+        new_values = set()
+
+        for i in old_values:
+
+            for n in primesL:
+                mul = i * n
+                new_values.add(mul)
+
+                if mul <= limit:
+                    result.add(mul)
+
+        min_number = min(new_values)
+        old_values = {i for i in new_values if i < limit}
+
+    return [len(result), max(result)]
 
 
 def test() -> None:

@@ -1,14 +1,10 @@
-import re
-
-
 def domain_name(url: str) -> str:
     """
     Функция для нахождения домена нижнего уровня из URL
     :param url: Полный URL страницы
     :return: Домен нижнего уровня
     """
-    pattern: str = r"[^htpsw\./]+[\w-]+"
-    return re.search(pattern, url)[0]
+    return url.split("//")[-1].split("www.")[-1].split(".")[0]
 
 
 def test():
@@ -23,4 +19,5 @@ def test():
 
 
 if __name__ == '__main__':
+    print(domain_name('yandex.ru'))
     test()

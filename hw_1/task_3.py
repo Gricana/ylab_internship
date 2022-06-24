@@ -1,17 +1,14 @@
-from math import log
-
-
 def zeros(n: int) -> int:
     """
     Нахождение кол-ва нулей в хвосте значения факториала неотрицательного числа
     :param n: int - число для факториала
     :return: int - число нулей в хвосте факториала
     """
-    if n == 0:
-        return 0
-    k_max: int = int(log(n, 5))
-    count_zeros: int = int(sum((n / 5 ** i for i in range(1, k_max + 1))))
-    return count_zeros
+    count = 0
+    while n >= 5:
+        n //= 5
+        count += n
+    return count
 
 
 def test():
