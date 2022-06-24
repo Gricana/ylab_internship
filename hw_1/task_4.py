@@ -25,8 +25,6 @@ def bananas(s: str, word="banana") -> set:
     return result
 
 
-
-
 def test():
     assert bananas("banann") == set()
     assert bananas("banana") == {"banana"}
