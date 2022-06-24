@@ -9,7 +9,7 @@ def get_prime_divisors(n: int) -> set:
     while d ** 2 <= n:
         if n % d == 0:
             result.add(d)
-            n /= d
+            n //= d
         else:
             d += 1
     if n > 1:
@@ -24,7 +24,7 @@ def count_find_num(primesL: list, limit: int) -> list:
     :param limit: int - Верхняя граница интервала поиска
     :return: list - кол-во найденных чисел и максимальное найденное число
     """
-    numbers = []
+    numbers: list = []
     for number in range(2, limit + 1):
         if list(get_prime_divisors(number)) == primesL:
             numbers.append(number)

@@ -12,12 +12,12 @@ def bananas(s: str, word="banana") -> set:
     len_s: int = len(s)
 
     for indexes in combinations(range(len_s), len_s - 6):
-        symbols = list(s)
+        symbols: list = list(s)
 
         for i in indexes:
             symbols[i] = '-'
 
-        temp_str = ''.join(symbols)
+        temp_str: str = ''.join(symbols)
 
         if temp_str.replace('-', '') == word:
             result.add(temp_str)

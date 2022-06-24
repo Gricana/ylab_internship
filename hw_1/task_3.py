@@ -9,8 +9,8 @@ def zeros(n: int) -> int:
     """
     if n == 0:
         return 0
-    k_max = int(log(n, 5))
-    count_zeros = int(sum((n / 5 ** i for i in range(1, k_max + 1))))
+    k_max: int = int(log(n, 5))
+    count_zeros: int = int(sum((n / 5 ** i for i in range(1, k_max + 1))))
     return count_zeros
 
 
